@@ -1,0 +1,57 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Colliderplayer : MonoBehaviour
+{
+    public GameObject booster;
+    public GameObject enemy;
+
+    public Text healthTextUI;
+    public Text pointsTextUI;
+
+    public static int health;
+    public int points;
+
+    private void Start()
+    {
+        health = 20;
+        healthTextUI.text = "Life :" + health.ToString();
+        pointsTextUI.text = "Points :" + points.ToString();
+
+    }
+    private void Update()
+    {
+        healthTextUI.text = "Life :" + health.ToString();
+        pointsTextUI.text = "Points :" + points.ToString();
+
+        HealthSystem();
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.name == "booster")
+        {
+            health += 1;
+            points += 1;
+            Destroy(booster);
+            Debug.Log(health);
+
+        }
+    }
+
+    void HealthSystem()
+    {
+        if (health < 1)
+        {
+            Destroy(enemy);
+
+          
+        }
+    }
+}
+    
+
+
+
+
